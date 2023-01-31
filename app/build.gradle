@@ -30,6 +30,9 @@ dependencies {
 
     implementation 'org.slf4j:slf4j-log4j12:2.0.6'
 
+    implementation 'fr.bmartel:jspeedtest:1.32.1'
+
+
     // Use the awesome Spock testing and specification framework even with Java
     testImplementation 'org.spockframework:spock-core:2.2-groovy-3.0'
     testImplementation 'junit:junit:4.13.2'
