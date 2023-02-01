@@ -20,7 +20,9 @@ import java.util.concurrent.CountDownLatch
 @SuppressWarnings(['NoFloat'])
 class SpeedTestSocketThread extends Thread {
 
-    BigDecimal averageRate = new BigDecimal(0)
+    BigDecimal averageRate
+    BigDecimal minRate = new BigDecimal(Integer.MAX_VALUE)
+    BigDecimal maxRate = new BigDecimal(Integer.MIN_VALUE)
     Date startDate
     Date endDate
 
@@ -78,6 +80,14 @@ class SpeedTestSocketThread extends Thread {
             BigDecimal sum = new BigDecimal(0)
             for (BigDecimal current : rates) {
                 sum = sum.add(current)
+
+                if (current < minRate) {
+                    minRate = current
+                }
+
+                if (current > maxRate) {
+                    maxRate = current
+                }
             }
 
             BigDecimal average = sum.divide(rates.size().toBigDecimal(), 2, RoundingMode.HALF_UP)
