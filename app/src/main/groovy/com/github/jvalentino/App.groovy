@@ -1,5 +1,6 @@
 package com.github.jvalentino
 
+import com.github.jvalentino.thread.InfinitePingThread
 import com.github.jvalentino.thread.InfiniteSpeedTest
 import groovy.transform.CompileDynamic
 import groovy.util.logging.Slf4j
@@ -19,16 +20,21 @@ class App {
     static final String MB_20 = 'https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_20MB_WMV.wmv'
 
     File downloadReportFile = new File('report-download.csv')
+    File pingReportFile = new File('report-ping.csv')
 
     static void main(String[] args) {
         new App().execute()
     }
 
     void execute() {
-        InfiniteSpeedTest speedTest = new InfiniteSpeedTest(downloadReportFile, MB_1)
+        InfiniteSpeedTest speedTest = new InfiniteSpeedTest(downloadReportFile, MB_20)
         speedTest.start()
 
+        InfinitePingThread ping = new InfinitePingThread(pingReportFile)
+        ping.start()
+
         speedTest.join()
+        ping.join()
     }
 
 }

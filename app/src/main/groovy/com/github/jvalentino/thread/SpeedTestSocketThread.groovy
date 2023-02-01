@@ -55,7 +55,6 @@ class SpeedTestSocketThread extends Thread {
     }
 
     void start(String url) {
-        logit("Downloading ${url}")
         speedTestResult.startDate = DateGenerator.date()
         speedTestSocket.startDownload(url)
         super.start()
@@ -82,7 +81,7 @@ class SpeedTestSocketThread extends Thread {
             BigDecimal rate = report.transferRateBit
             rates.add(rate)
 
-            logit("${S_PATTERN}100% at ${FormatUtil.formatRateFromBits(rate.toLong())}${E_PATTERN}")
+            // logit("${S_PATTERN}Download 100% at ${FormatUtil.formatRateFromBits(rate.toLong())}${E_PATTERN}")
 
             BigDecimal sum = new BigDecimal(0)
             for (BigDecimal current : rates) {
@@ -98,7 +97,7 @@ class SpeedTestSocketThread extends Thread {
             }
 
             BigDecimal average = sum.divide(rates.size().toBigDecimal(), 2, RoundingMode.HALF_UP)
-            logit("Average: ${FormatUtil.formatRateFromBits(average.toLong())} " +
+            logit("Download Average: ${FormatUtil.formatRateFromBits(average.toLong())} " +
                     "(${speedTestResult.startDate} - ${speedTestResult.endDate})")
             speedTestResult.averageRate = average
         }
@@ -113,9 +112,9 @@ class SpeedTestSocketThread extends Thread {
             BigDecimal rate = report.transferRateBit
             rates.add(rate)
 
-            if (rates.size() % 100 == 0 || rates.size() == 1) {
-                logit("${percent}% at ${FormatUtil.formatRateFromBits(rate.toLong())}")
-            }
+            /*if (rates.size() % 1000 == 0 || rates.size() == 1) {
+                logit("Download ${percent}% at ${FormatUtil.formatRateFromBits(rate.toLong())}")
+            }*/
         }
     }
 
