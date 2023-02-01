@@ -1,5 +1,6 @@
 package com.github.jvalentino.thread
 
+import com.github.jvalentino.data.SpeedTestResult
 import com.github.jvalentino.util.DateGenerator
 import com.github.jvalentino.util.DateUtil
 import fr.bmartel.speedtest.SpeedTestReport
@@ -15,13 +16,17 @@ class SpeedTestSocketThreadTest extends Specification {
     def setup() {
         subject = new SpeedTestSocketThread()
         subject.with {
-            averageRate = new BigDecimal(0)
-            startDate = null
-            endDate = null
             speedTestSocket = GroovyMock(SpeedTestSocket)
             latch = GroovyMock(CountDownLatch)
             rates = []
             instance = Mock(SpeedTestSocketThread)
+        }
+
+        subject.speedTestResult = new SpeedTestResult()
+        subject.speedTestResult.with {
+            averageRate = new BigDecimal(0)
+            startDate = null
+            endDate = null
         }
 
         GroovyMock(DateGenerator, global:true)
@@ -62,10 +67,10 @@ class SpeedTestSocketThreadTest extends Specification {
         1 * subject.latch.countDown()
 
         and:
-        subject.averageRate.toDouble() == 116.67D
+        subject.speedTestResult.averageRate.toDouble() == 116.67D
         subject.rates.size() == 3
-        subject.minRate.toInteger() == 50
-        subject.maxRate.toInteger() == 200
+        subject.speedTestResult.minRate.toInteger() == 50
+        subject.speedTestResult.maxRate.toInteger() == 200
 
     }
 

@@ -32,6 +32,8 @@ dependencies {
 
     implementation 'fr.bmartel:jspeedtest:1.32.1'
 
+    implementation 'com.opencsv:opencsv:5.7.1'
+
 
     // Use the awesome Spock testing and specification framework even with Java
     testImplementation 'org.spockframework:spock-core:2.2-groovy-3.0'
