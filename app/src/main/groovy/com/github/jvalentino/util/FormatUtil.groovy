@@ -16,10 +16,10 @@ import java.text.DecimalFormat
 class FormatUtil {
 
     static String formatRateFromBits(long bits) {
-        formatRate(bits * 8)
+        formatRate((bits / 8))
     }
 
-    static String formatRate(long size) {
+    static String formatRate(double size) {
         String hrSize = null
 
         double b = size
@@ -44,7 +44,7 @@ class FormatUtil {
     }
 
     static String formatDecimal(double value) {
-        DecimalFormat dec = new DecimalFormat('.00')
+        DecimalFormat dec = new DecimalFormat('0.00')
         dec.format(value)
     }
 
