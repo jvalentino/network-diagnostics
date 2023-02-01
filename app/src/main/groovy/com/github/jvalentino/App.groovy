@@ -1,7 +1,6 @@
 package com.github.jvalentino
 
-import com.github.jvalentino.service.SpeedRestReportService
-import com.github.jvalentino.thread.SpeedTestSocketThread
+import com.github.jvalentino.thread.InfiniteSpeedTest
 import groovy.transform.CompileDynamic
 import groovy.util.logging.Slf4j
 
@@ -21,18 +20,15 @@ class App {
 
     File downloadReportFile = new File('report-download.csv')
 
-    protected SpeedRestReportService speedRestReportService = new SpeedRestReportService()
-
     static void main(String[] args) {
         new App().execute()
     }
 
     void execute() {
-        SpeedTestSocketThread thread = new SpeedTestSocketThread()
-        thread.start(MB_1)
-        thread.join()
+        InfiniteSpeedTest speedTest = new InfiniteSpeedTest(downloadReportFile, MB_1)
+        speedTest.start()
 
-        speedRestReportService.report(downloadReportFile, thread.speedTestResult)
+        speedTest.join()
     }
 
 }
