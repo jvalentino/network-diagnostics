@@ -41,7 +41,7 @@ jobs:
       uses: svenstaro/upload-release-action@v2
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
-          file: app/build/network-reporter.jar
+          file: app/build/libs/network-reporter.jar
           asset_name: network-reporter
           tag: ${{ github.ref }}
           overwrite: true
