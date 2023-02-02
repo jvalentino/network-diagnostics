@@ -43,6 +43,6 @@ jobs:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: app/build/libs/network-reporter.jar
           asset_name: network-reporter
-          tag: 1.0.{{github.run_number}}
+          tag: 1.0.${{github.run_number}}
           overwrite: true
           body: "Network report"
