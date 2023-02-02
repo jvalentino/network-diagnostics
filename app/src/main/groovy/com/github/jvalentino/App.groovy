@@ -21,6 +21,7 @@ class App {
 
     File downloadReportFile = new File('report-download.csv')
     File pingReportFile = new File('report-ping.csv')
+    File pingChartFile = new File('report-ping.png')
 
     static void main(String[] args) {
         new App().execute()
@@ -30,7 +31,7 @@ class App {
         InfiniteSpeedTest speedTest = new InfiniteSpeedTest(downloadReportFile, MB_20)
         speedTest.start()
 
-        InfinitePingThread ping = new InfinitePingThread(pingReportFile)
+        InfinitePingThread ping = new InfinitePingThread(pingReportFile, pingChartFile)
         ping.start()
 
         speedTest.join()

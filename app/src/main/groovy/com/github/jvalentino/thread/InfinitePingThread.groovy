@@ -20,9 +20,11 @@ class InfinitePingThread extends Thread {
     protected File pingReportFile
     protected boolean running = true
     protected PingReportService pingReportService = new PingReportService()
+    File pingChartFile
 
-    InfinitePingThread(File pingReportFile) {
+    InfinitePingThread(File pingReportFile, File pingChartFile) {
         this.pingReportFile = pingReportFile
+        this.pingChartFile = pingChartFile
     }
 
     @Override
@@ -36,7 +38,7 @@ class InfinitePingThread extends Thread {
             long time = end.time - start.time
             logit("Ping ${result} in ${time}ms")
 
-            pingReportService.report(pingReportFile, start, result, time)
+            pingReportService.report(pingReportFile, pingChartFile, start, result, time)
 
             SleepUtil.sleep(5_000L)
         }
