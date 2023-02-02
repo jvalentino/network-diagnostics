@@ -17,7 +17,7 @@ class InfiniteSpeedTest extends Thread {
 
     protected SpeedRestReportService speedRestReportService = new SpeedRestReportService()
 
-    InfiniteSpeedTest(File downloadReportFile, downloadChartFile, String url) {
+    InfiniteSpeedTest(File downloadReportFile, File downloadChartFile, String url) {
         this.downloadReportFile = downloadReportFile
         this.url = url
         this.downloadChartFile = downloadChartFile

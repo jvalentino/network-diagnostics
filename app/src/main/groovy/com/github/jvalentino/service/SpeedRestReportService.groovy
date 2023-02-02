@@ -13,6 +13,7 @@ import groovy.transform.CompileDynamic
  * @author john.valentino
  */
 @CompileDynamic
+@SuppressWarnings(['JavaIoPackageAccess'])
 class SpeedRestReportService {
 
     static final String[] HEADERS = [
