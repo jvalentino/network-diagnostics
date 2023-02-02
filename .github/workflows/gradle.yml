@@ -13,8 +13,7 @@ on:
   pull_request:
     branches: [ "main" ]
 
-permissions:
-  contents: admin
+permissions: read-all|write-all
 
 jobs:
   build:
