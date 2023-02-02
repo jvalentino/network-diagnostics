@@ -32,3 +32,12 @@ jobs:
       uses: gradle/gradle-build-action@67421db6bd0bf253fb4bd25b31ebb98943c375e1
       with:
         arguments: build --scan
+    - name: Upload binaries to release
+      uses: svenstaro/upload-release-action@v2
+      with:
+          repo_token: ${{ secrets.GITHUB_TOKEN }}
+          file: app/build/network-reporter.jar
+          asset_name: network-reporter
+          tag: ${{ github.ref }}
+          overwrite: true
+          body: "Network report"
