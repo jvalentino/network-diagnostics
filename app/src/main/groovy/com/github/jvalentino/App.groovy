@@ -20,6 +20,7 @@ class App {
     static final String MB_20 = 'https://freetestdata.com/wp-content/uploads/2022/02/Free_Test_Data_20MB_WMV.wmv'
 
     File downloadReportFile = new File('report-download.csv')
+    File downloadChartFile = new File('report-download.png')
     File pingReportFile = new File('report-ping.csv')
     File pingChartFile = new File('report-ping.png')
 
@@ -28,7 +29,7 @@ class App {
     }
 
     void execute() {
-        InfiniteSpeedTest speedTest = new InfiniteSpeedTest(downloadReportFile, MB_20)
+        InfiniteSpeedTest speedTest = new InfiniteSpeedTest(downloadReportFile, downloadChartFile, MB_20)
         speedTest.start()
 
         InfinitePingThread ping = new InfinitePingThread(pingReportFile, pingChartFile)

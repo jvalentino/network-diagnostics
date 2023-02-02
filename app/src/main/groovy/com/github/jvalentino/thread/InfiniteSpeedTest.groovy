@@ -13,12 +13,14 @@ class InfiniteSpeedTest extends Thread {
     protected File downloadReportFile
     protected String url
     protected boolean running = true
+    protected File downloadChartFile
 
     protected SpeedRestReportService speedRestReportService = new SpeedRestReportService()
 
-    InfiniteSpeedTest(File downloadReportFile, String url) {
+    InfiniteSpeedTest(File downloadReportFile, downloadChartFile, String url) {
         this.downloadReportFile = downloadReportFile
         this.url = url
+        this.downloadChartFile = downloadChartFile
     }
 
     @Override
@@ -28,7 +30,7 @@ class InfiniteSpeedTest extends Thread {
             thread.start(url)
             thread.join()
 
-            speedRestReportService.report(downloadReportFile, thread.speedTestResult)
+            speedRestReportService.report(downloadReportFile, downloadChartFile, thread.speedTestResult)
         }
     }
 
