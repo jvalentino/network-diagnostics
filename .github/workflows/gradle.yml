@@ -42,7 +42,7 @@ jobs:
       with:
           repo_token: ${{ secrets.GITHUB_TOKEN }}
           file: app/build/libs/network-reporter.jar
-          asset_name: network-reporter
+          asset_name: network-reporter.jar
           tag: 1.0.${{github.run_number}}
           overwrite: true
-          body: "Network report"
+          body: "Binary automatically built on successful CI/CD pipeline"
