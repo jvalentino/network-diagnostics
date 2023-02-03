@@ -94,8 +94,12 @@ class ChartService {
         TimeSeries series = new TimeSeries(seriesName)
 
         for (int i = 0; i < dates.size(); i++) {
-            Second minute = new Second(dates.get(i))
-            series.add(minute, values.get(i))
+            try {
+                Second minute = new Second(dates.get(i))
+                series.addOrUpdate(minute, values.get(i))
+            } catch (e) {
+                log.error('missing point', e)
+            }
         }
 
         dataset.addSeries(series)
